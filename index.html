@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>barışalım mı</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(#ffdde1, #ee9ca7);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 3em;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    #buttonContainer {
+      margin-top: 20px;
+    }
+    .btn {
+      padding: 25px 50px;
+      font-size: 1.8em;
+      margin: 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #yesBtn {
+      background-color: #4CAF50;
+      color: white;
+      z-index: 1;
+    }
+    #noBtn {
+      background-color: #f44336;
+      color: white;
+      z-index: 1;
+    }
+    .pelus {
+      width: 150px;
+      margin: 10px;
+    }
+    .pelus-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .gif-kose {
+      position: fixed;
+      width: 100px;
+      opacity: 0.8;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .sol-ust { top: 10px; left: 10px; }
+    .sag-ust { top: 10px; right: 10px; }
+    .sol-alt { bottom: 10px; left: 10px; }
+    .sag-alt { bottom: 10px; right: 10px; }
+    .kalp {
+      position: fixed;
+      top: -50px;
+      width: 30px;
+      height: 30px;
+      animation: yagmur 5s linear infinite;
+    }
+    @keyframes yagmur {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>barışalım mı güzellik??? ben olsam barışırdım heee 💞</h1>
+  <div id="buttonContainer">
+    <button id="yesBtn" class="btn" onclick="evetTiklandi()">Evet</button>
+    <button id="noBtn" class="btn" onclick="hayirTiklandi()">Hayır</button>
+  </div>
+
+  <!-- Köşelere özel peluş gifler -->
+  <img src="https://media.giphy.com/media/EUUIQDB2XDgRVYQSe1/giphy.gif" class="gif-kose sol-ust">
+  <img src="https://media.giphy.com/media/KHJo4hvTRfD0PKXhx3/giphy.gif" class="gif-kose sag-ust">
+  <img src="https://media.giphy.com/media/UCipxw953iDfdN70zn/giphy.gif" class="gif-kose sol-alt">
+  <img src="https://media.giphy.com/media/jtPavl2BFHmM6ONdef/giphy.gif" class="gif-kose sag-alt">
+
+  <!-- Kalp yağmuru -->
+  <script>
+    for (let i = 0; i < 30; i++) {
+      const kalp = document.createElement('div');
+      kalp.classList.add('kalp');
+      kalp.style.left = Math.random() * 100 + 'vw';
+      kalp.innerHTML = '❤️';
+      kalp.style.animationDuration = (3 + Math.random() * 2) + 's';
+      document.body.appendChild(kalp);
+    }
+
+    let noClickCount = 0;
+
+    function hayirTiklandi() {
+      noClickCount++;
+      const noBtn = document.getElementById('noBtn');
+      const yesBtn = document.getElementById('yesBtn');
+
+      let scaleNo = Math.max(0.05, 1 - 0.1 * noClickCount);
+      noBtn.style.transform = `scale(${scaleNo})`;
+
+      let scaleYes = 1 + 0.4 * noClickCount;
+      yesBtn.style.transform = `scale(${scaleYes})`;
+
+      if (scaleYes >= 10) {
+        document.body.innerHTML = '<h1 style="color: white; font-size: 3em;">YAŞASIN! 💖</h1>';
+        setTimeout(() => {
+          document.body.innerHTML = `
+            <div style="padding: 40px; text-align: center; color: white; font-size: 1.5em;">
+              <h1>demek barışmayı bu kadar çok istiyordun 🥰</h1>
+              <p>yani şaşırmadım ben olsam ben de benim gibi yakışıklı hollanda beyefendisi, kibar, nazik bir beyefendiyle barışmak isterdim!!</p>
+              <p>korkma benle yükselmekten hiç yıkılmaz bu dağlarrr, seni gören kalp tak tak atıyorr 🚀🚀</p>
+              <div class="pelus-container">
+  <img src="https://media.giphy.com/media/8PPX8J5LDlzh1HQj0B/giphy.gif">
+  <img src="https://media.giphy.com/media/LHkAoszzROhIL4qZKl/giphy.gif">
+</div>
+<div class="pelus-container">
+  <img src="images/ani1.jpg" alt="Anı 1" class="pelus">
+  <img src="images/ani2.jpg" alt="Anı 2" class="pelus">
+  <img src="images/ani3.jpg" alt="Anı 3" class="pelus">
+              </div>
+            </div>
+          `;
+        }, 2000);
+      }
+    }
+
+    function evetTiklandi() {
+      document.body.innerHTML = `
+        <div style="padding: 40px; text-align: center; color: white; font-size: 1.5em;">
+          <h1>demek barışmayı bu kadar çok istiyordun 🥰</h1>
+          <p>yani şaşırmadım ben olsam ben de benim gibi yakışıklı hollanda beyefendisi, kibar, nazik bir beyefendiyle barışmak isterdim!!</p>
+          <p>korkma benle yükselmekten hiç yıkılmaz bu dağlarrr, seni gören kalp tak tak atıyorr 🚀🚀</p>
+          <div class="pelus-container">
+            <img src="https://media.giphy.com/media/8PPX8J5LDlzh1HQj0B/giphy.gif">
+            <img src="https://media.giphy.com/media/LHkAoszzROhIL4qZKl/giphy.gif">
+          </div>
+        </div>
+      `;
+    }
+  </script>
+
+</body>
+</html>
